@@ -1,0 +1,520 @@
+# Created by: HexH4x
+# Last Modified: 1/10/25
+# Purpose:
+# Getting more familiar with print,
+# global and local variables,
+# defining functions, and time.
+
+import time
+import pygame
+
+pygame.init()
+
+# Choices to toggle during the game
+choices = {
+    "found_water": False,
+    "went_downstairs": False,
+    "shoved_skeleton": False,
+    "found_food": False,
+    "drank_water": False,
+    "ate_food": False
+}
+
+
+
+
+# Intro screen
+print(r'''
+                  +             /
+\           |           /
+  \         |         /
+    \      / \      /
+      \  /_____\  /
+      /  |__|__|  \
+    /  |;|     |;|  \
+  /    \\.    .  /    \
+/       ||:  .  |       \
+        ||:     |         \
+        ||:.    |           \
+        ||:    .|
+        ||:   , |         /`\
+        ||:     |                                          /`\
+        ||: _ . |                             /`\
+       _||_| |__|                      ____
+  ____~    |_|  |___           __-----~    ~`---,__             ___
+-~                  ~---___,--~'                  ~~----_____-~'
+`~----,____                      
+''')
+
+
+
+
+def start_adventure():
+    print("Welcome to the Game.")
+    print("You wake up to find yourself alone on a small wooden boat, surrounded by water.")
+    print("You have no memory of how you got here, and there are no clues- only a small paddle.")
+    print("Your gaze moves from the paddle to the vast body of water around you.")
+    first_choice()
+
+def restart_adventure():
+    print("\nWelcome back to the Game.")
+    print("You wake up to find yourself alone on a small wooden boat, surrounded by water.")
+    print("You have no memory of how you got here, and there are no clues- only a small paddle.")
+    print("Your gaze moves from the paddle to the vast body of water around you.")
+    first_choice()
+
+def first_choice():
+    print("\nYou...:")
+    print("1. pick up the paddle and start rowing.")
+    print("2. do nothing. To conserve your energy, of course.")
+    choice = input("Enter 1 or 2: ")
+
+    if choice == "1":
+        rowing_one()
+    elif choice == "2":
+        just_sit()
+    else:
+        print("Invalid choice. Try again.")
+        first_choice()
+
+def rowing_one():
+    print("\nYou row. And row. And row. Just when you think the ocean is endless, you spot a lighthouse in the distance.")
+    print("You...:")
+    print("1. row in the opposite direction.")
+    print("2. find the strength to row towards the lighthouse.")
+    choice = input("Enter 1 or 2: ")
+    
+    if choice == "1":
+        keep_rowing()
+    elif choice == "2":
+        towards_the_light()
+    else:
+        print("Invalid choice. Try again.")
+        rowing_one()
+    
+
+def keep_rowing():
+    print("\nYou decide that you enjoy the salty ocean breeze, and you always had a fondness for seafood.")
+    print("You...:")
+    print("1. keep rowing.")
+    print("2. stop rowing.")
+    choice = input("Enter 1 or 2: ")
+
+    if choice == "1":
+        keep_rowing()
+    elif choice == "2":
+        print("\nYou stop rowing and look around, taking in the beauty of the sunset reflecting off the water.")
+        print("You decide this would be a lovely place to meet your end.")
+        print("You sit and wait for death to claim you.")
+        print("Game over.")
+        play_again()
+        
+def just_sit():
+    print("\nYou do nothing, conserving your energy in case you need to spring into action.")
+    print("Unfortunately, no angry condors appear, and your energy eventually depletes anyway.")
+    print("As does your hydration.")
+    print("Before you die, you wonder if maybe doing something, anything, would have been a better choice.")
+    print("Game over.")
+    play_again()
+
+def towards_the_light():
+    print("\nYour arms feel like rubber, but you push through and make it to the lighthouse.")
+    print("It looms, a dark colossus against the gray sky, it's rotating beam of light piercing the shadows.")
+    print("You...")
+    print("1. circle around the perimeter, carefully examining the area.")
+    print("2. enter the lighthouse.")
+    choice = input("Enter 1 or 2: ")
+
+    if choice == "1":
+        circle_around()
+    elif choice == "2":
+        enter_light()
+    else:
+        print("Invalid choice. Try again.")
+        towards_the_light()
+
+def circle_around():
+    print("\nAlways wary of potential danger, you decide to look around the area at the base of the lighthouse.")
+    print("The waves are crashing angrily against the rocks.")
+    print("A lone gull flies overhead, and a crab scuttles past.")
+    print("You...")
+    print("1. head down to towards the water.")
+    print("2. continue making your way around the base of the lighthouse.")
+    choice = input("Enter 1 or 2: ")
+
+    if choice == "1" or choice == "2": # Using an if statement with or
+        rock_slip()
+    else:
+        print("Invalid choice. Try again.")
+        circle_around()
+
+def rock_slip():
+    print("\nYou tread carefully on the slick rocks.")
+    print("Unfortunately, not carefully enough.")
+    print("You slip, your arms flailing wildly as you attempt to regain your balance.")
+    print("However, your balance is lost, and your head connects solidly with the jagged edge of a rock.")
+    print("Game over.")
+    play_again()
+
+def enter_light():
+    print("\nYou pry open the rusty door, and step into the darkness.")
+    print("As your eyes adjust, you can see that everything is covered in a thick layer of dust.")
+    print("Peering into the darkness, you can make out a winding staircase.")
+    print("You...")
+    print("1. go up the stairs.")
+    print("2. go down the stairs.")
+    choice = input("Enter 1 or 2: ")
+
+    if choice == "1":
+        up_stairs()
+    elif choice == "2":
+        downstairs()
+    else:
+        print("Invalid choice. Try again.")
+        enter_light()
+
+def up_stairs():
+    print("\nYou trudge up the stairs.")
+    print("As they wind around, you find yourself in a shabby, but cozy living area.")
+    print("You...")
+    print("1. continue up the stairs.")
+    print("2. look around the room.")
+    choice = input("Enter 1 or 2: ")
+
+    if choice == "1":
+        up_stairs_two()
+    elif choice == "2":
+        living_area()
+    else:
+        print("Invalid choice. Try again.")
+        up_stairs()
+
+def living_area():
+    print("\nYou step into the dusty living area.")
+    print("It's clear that no one has been here for a while.")
+    print("You see some furniture, it's wood warped and swollen from the damp air.")
+    print("You...")
+    print("1. search the dresser.")
+    print("2. plunder through the kitchen.")
+    choice = input("Enter 1 or 2: ")
+
+    if choice == "1":
+        dresser()
+    elif choice == "2":
+        kitchen()
+    else:
+        print("Invalid choice. Try again.")
+        living_area()
+
+def kitchen():
+    if choices["found_water"]:
+        print("\nYou find nothing of interest.")
+        print("You head back to the main room.")
+        main_room()
+    choices["found_water"] = True
+    print("\nThe kitchen is covered in dust and mould.")
+    print("Finding nothing useful in the cabinets, you turn to the refridgerator.")
+    print("Summoning all of your courage, you force open the door.")
+    print("Sitting proudly on the shelf is an unopened bottle of water, somehow in pristine condition.")
+    print("You...")
+    print("1. drink the water.")
+    print("2. put the water in your satchel.")
+    choice = input("Enter 1 or 2: ")
+
+    if choice == "1":
+        choices["drank_water"] = True
+        drink_water()
+        main_room()
+    elif choice == "2":
+        save_water()
+    else:
+        print("Invalid choice. Try again.")
+        kitchen()
+
+def save_water():
+    print("\nYou stash the water in your satchel, in case you need it later.")
+    print("You return to the main room.")
+    main_room()
+
+def drink_water():
+    print("\nYou gulp down the water, letting it ease your parched throat.")
+    if choices["ate_food"]: 
+        print("The drink, along with your snack, have you feeling almost whole again.")
+    else:
+        print("You feel slightly more energized.")
+    print("Finding nothing more of value, you return to the main room.")
+
+
+def dresser():
+    if choices["found_food"]:
+        print("\nYou find nothing of importance")
+        print("You head back to the main room.")
+        main_room()
+    choices["found_food"] = True
+    print("\nYou pry open the top drawer of the dresser, tossing the mouldy garmets aside.")
+    print("The top drawer yields nothing of interest, so you yank sharply on the second drawer.")
+    print("Within the drawer is a candy bar.")
+    print("You...")
+    print("1. shove the candy in your pocket.")
+    print("2. eat the candy.")
+    choice = input("Enter 1 or 2: ")
+
+    if choice == "1":
+        print("\nYou shove the candy bar in your pocket. Might be good for a rainy day.")
+        print("You return to the main room.")
+        main_room()
+    elif choice == "2":
+        choices["ate_food"] = True
+        eat_candy()
+        main_room()
+    else:
+        print("Invalid choice. Try again.")
+        dresser()
+
+def main_room():
+    num = 1
+    print("Looking around, you...")
+    if choices["found_food"]:
+        print(str(num) + ". search the kitchen.")
+        num += 1
+    elif choices["found_water"]:
+        print(str(num) + ". search the dresser.")
+        num += 1
+    print(str(num) + ". continue up the stairs.")
+    choice = input("Enter 1 or 2: ")
+
+    if choice == "1" and choices["found_food"]:
+        kitchen()
+    elif choice == "1" and choices["found_water"]:
+        dresser()
+    elif choice == "2":
+        up_stairs_two()
+    else:
+        print("Invalid choice. Try again.")
+        main_room()
+
+
+
+def eat_candy():
+    print("\nYou unwrap the candy bar, and devour it, savoring every bite.")
+    print("Not knowing when you might find another meal makes it taste even better.")
+    if choices["drank_water"]:
+        print("After the snack and the bit of water you had, you are feeling almost restored.")
+    else:
+        print("You feel a small bit of strength return to you.")
+    print("You turn back to the main area.")
+
+def up_stairs_two():
+    print("\nYou continue up the stairs.")
+    print("The darkness gives way to a blinding gray brightness.")
+    print("You find yourself at the top of the lighthouse.")
+    print("In the center of the window-lined room is the light, slowly rotating, and a large, rusty lever.")
+    print("You...")
+    print("1. pull the lever.")
+    print("2. look out at the sea.")
+    choice = input("Enter 1 or 2: ")
+
+    if choice == "1":
+        lever_pulled()
+    elif choice == "2":
+        gaze()
+    else:
+        print("Invalid choice. Try again.")
+        up_stairs_two()
+
+def gaze():
+    print("\nYou turn your gaze to the sea, letting it's haunting beauty wash over you.")
+    print("Game over.")
+    play_again()
+
+
+# Multiple endings based on choices
+# Work in progress
+def lever_pulled():
+    if choices["ate_food"] and choices["drank_water"] and choices["went_downstairs"]:
+        ending_a()
+    elif choices["ate_food"] and choices["drank_water"] and choices["shoved_skeleton"]:
+        ending_b()
+    elif choices["found_food"] and choices["found_water"] and choices["went_downstairs"]:
+        ending_c()
+    elif (choices["found_food"] or choices["found_water"]) and choices["shoved_skeleton"]:
+        ending_d()
+    elif choices["ate_food"] and choices["drank_water"] and choices["shoved_skeleton"] == False and choices["went_downstairs"] == False:
+        ending_e()
+    else:
+        print("\nGame over.")
+        print("You reach for the lever, but instead lose your balance and stumble all the way across to the other side.")
+        print("You grab the railing, but the momentum of your awkward shuffle propels you over.")
+        print("You land with a thud. Game over.")
+        play_again()
+
+def ending_a():
+    print("\nYou pull on the lever with all your might.")
+    print("It doesn't budge.")
+    print("Putting every bit of your remaining strength into it, you finally push the lever to the other side.")
+    print("The spinning light slows, and dims, till it is still and dark.")
+    print("In the distance, you can barely make out the shape of a ship's mast through the fog.")
+    print("You smile, thinking of all the lives that will be lost on the jagged rocks below this lighthouse.")
+    print("Sweat may be running from your brow, but there is a satisfied smile upon your lips.")
+    print("You breath your last sigh, a contented one, as you fade away.")
+    print("\nYou... won?")
+    play_again()
+
+def ending_b():
+    print("\nYou push the large lever with all your might.")
+    print("As you lean into it, you feel a searing pain in your side.")
+    print("Upon examination, you find a long gash, and a small shard of bone sticking out.")
+    print("It seems that skeleton left you with a parting gift.")
+    print("You lean against the window, unsure what to do.")
+    print("You clearly don't have the strength to move the lever, but-")
+    print("Peering into the fog, you can just make out the mast of a large ship.")
+    print("It's turning to avoid the lighthouse, but you think you can catch it with your wooden boat if you hurry.")
+    print("You race down the stairs and out the door, feet pounding towards your little boat.")
+    print("Unfortunately, in your haste, you were careless, and you lose your footing on the slippery rocks.")
+    print("Your body is bruised and battered as it tumbles into the sea, lost forever.")
+    print("Game over.")
+    play_again()
+
+def ending_c():
+    print("\nYou push on the lever, but the rust holds tight.")
+    print("You refuse to give up, you push harder.")
+    print("After hours of trying, you collapse, exhausted.")
+    print("Your body gives out.")
+    print("Your last thoughts are of the water in your bag and the candy in your pocket.")
+    print("If only you had the strength to reach them... but alas, you succumb to the darkness.")
+    print("Game over.")
+    play_again()
+
+def ending_d():
+    print("\nAs you reach for the lever, you feel a sharp pain in your side.")
+    print("Upon examination, you find a long scratch with a sliver of bone stuck in it.")
+    print("You realize the skeleton had a parting gift for you.")
+    print("Your body isn't strong enough to fight off the poison that the bone was laced with.")
+    print("You sink to the floor of the lighthouse, darkness already clouding your vision.")
+    print("The whirr of the machines drowns out what would be your final thoughts.")
+    print("The light continues to spin, your body, prone on the floor, casting a slight shadow with every rotation.")
+    print("Game over.")
+    play_again()
+
+def ending_e():
+    print("\nYou grab the lever's handle and pull.")
+    print("You feel it start to budge, but it refuses to give.")
+    print("You refuse to give up, using the last of your strength to try to move it.")
+    print("You collapse, exhausted, unable to go on.")
+    print("As darkness envelops you, your mind wanders to this lighthouse.")
+    print("You wonder if there was more to it, maybe something you missed. Maybe some piece to the puzzle that remains hidden.")
+    print("Frustration creases your brow, before your body goes slack and lifeless.")
+    print("Game over.")
+    play_again()
+
+def downstairs():
+    print("\nYou carefully make your way down the stairs.")
+    print("As you circle down, further and further, the oppressive darkness gives way to a faint warm light.")
+    print("You get closer, and you can see that the light is a large, welcoming firepit in the center of the room.")
+    print("You...")
+    print("1. turn around, denying yourself the comfort of the firepit.")
+    print("2. decide you need a rest, and the warmth of the fire is too much to resist.")
+    choice = input("Enter 1 or 2: ")
+
+    if choice == "1":
+        choices["went_downstairs"] = True
+        foyer()
+    elif choice == "2":
+        timed_skeleton()
+    else:
+        print("Invalid choice. Try again.")
+        downstairs()
+
+def foyer():
+    print("\nAfter a long climb up the stairs, you return to the main floor.")
+    print("You...")
+    print("1. go up the stairs.")
+    print("2. think you ought to go examine the outside afterall.")
+    choice = input("Enter 1 or 2: ")
+
+    if choice == "1":
+        up_stairs()
+    elif choice == "2":
+        circle_around()
+    else:
+        print("Invalid choice. Try again.")
+        foyer()
+
+# Timed event
+def timed_skeleton():
+    print("\nSuddenly, a huge skeleton appears from the shadows and lunges at you!")
+    print("You...")
+    print("1. cower and scream.")
+    print("2. shove the skeleton.")
+    start_time = time.time()
+    choice = input("Enter 1 or 2 quickly: ")
+    elapsed_time = time.time() - start_time
+
+    if elapsed_time > 5:
+        print("\nYou took too long! The skeleton wraps it's boney arms around you and squeezes you till you pop.")
+        play_again()
+    elif choice == "1":
+        print("\nYou cower, screaming at the top of your lungs.")
+        print("It doesn't phase the skeleton.")
+        print("Your arms and legs are ripped from your body.")
+        print("Your last breaths are spent on sobs.")
+        print("Game over.")
+        play_again()
+    elif choice == "2":
+        choices["shoved_skeleton"] = True
+        shove()
+    else:
+        print("\nInvalid choice.")
+        print("The skeleton wraps it's boney arms around you, squeezing every bit of air from your lungs.")
+        print("Game over.")
+        play_again()
+
+def shove():
+    print("\nUsing every bit of your core strength, you shove the skeleton away from you.")
+    print("It trips over it's boney heels, and stumbles into the firepit.")
+    print("It's jaw gapes open in a silent scream, till it is nothing but ash.")
+    print("You...")
+    print("1. Return to the main floor of the lighthouse.")
+    print("2. decide you deserve that rest-by-the-fire more than ever.")
+    choice = input("Enter 1 or 2: ")
+
+    if choice == "1":
+        foyer()
+    elif choice == "2":
+        print("\nYou settle in by the firepit, letting the warmth seep into your body.")
+        print("As you sit there, you wonder why there is a lighthouse in the middle of the ocean with an animated skeleton in the basement.")
+        print("You wonder who dug a basement this deep, and why.")
+        print("The fire soothes your aching body, and your mind drifts. You no longer notice your dehydration, and your empty stomach is of no concern.")
+        print("You fall into a deep sleep, from which you haven't the strength to wake up.")
+        print("Game over.")
+        play_again()
+    else:
+        print("Invalid choice. Try again.")
+        shove()
+
+def play_again():
+    print("\nWould you like to play again?")
+    choice = input("Y or N?: ").strip().upper()
+
+    if choice == "Y": # Resetting choices for the next game
+        global choices
+        choices = {
+    "found_water": False,
+    "went_downstairs": False,
+    "shoved_skeleton": False,
+    "found_food": False,
+    "drank_water": False,
+    "ate_food": False
+}
+
+        print("\nRestarting the game...\n")
+        restart_adventure()
+    elif choice == "N":
+        print("Thanks for playing!")
+        exit()
+    else:
+        print("Invalid choice. Try again.")
+        play_again()
+
+
+start_adventure()
